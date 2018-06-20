@@ -3,4 +3,4 @@ import { selectHero } from './src/SelectHero';
 
 log.info('The world could always use more heroes...');
 
-const hero = selectHero('moir');
+const hero = selectHero('torb');
