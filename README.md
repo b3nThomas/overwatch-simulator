@@ -1,6 +1,6 @@
 # overwatch-simulator
 
-`Simulate Overwatch battles using character data`
+Simulate Overwatch battles using character data.
 
 ## Install
 ```
@@ -12,10 +12,10 @@ $ cd overwatch-simulator && npm i
 
 ```javascript
 selectHero('76');
-// 22:51:08.786Z  INFO overwatch-simulator: Searching for hero "sol"
+// 22:51:08.786Z  INFO overwatch-simulator: Searching for hero "76"
 // 22:51:08.787Z  INFO overwatch-simulator: Soldier: 76 (a.k.a Jack Morrison) selected
 
-returned {
+returns {
     name: 'Soldier: 76',
     realname: 'Jack Morrison',
     age: 'Unknown',
