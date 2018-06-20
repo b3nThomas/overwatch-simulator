@@ -1,4 +1,4 @@
-export const overwatchHeroes = [
+export const heroes = [
     {
         name: 'Ana',
         realname: 'Ana Amari',

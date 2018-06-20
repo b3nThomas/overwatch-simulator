@@ -1,30 +1,30 @@
 {
-  "name": "ben-thomas-guitar-tuition",
+  "name": "overwatch-simulator",
   "version": "1.0.0",
-  "description": "What is says on the tin 👍🎸🎵",
+  "description": "Simulate Overwatch battles",
   "main": "main.js",
   "scripts": {
     "build": "npm run -s transpile",
-    "start": "node main.js",
-    "start:local": "npm run -s build && node main.js",
-    "transpile": "./node_modules/.bin/tsc -p ."
+    "start": "npm run -s build && node main.js | bunyan -o short",
+    "transpile": "./node_modules/.bin/tsc -p .",
+    "watch": "nodemon -e ts --exec \"npm run start\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/b3nThomas/ben-thomas-guitar-tuition.git"
+    "url": "git+https://github.com/b3nThomas/overwatch-simulator.git"
   },
-  "keywords": [
-    "guitar",
-    "music",
-    "learning"
-  ],
+  "keywords": [],
   "author": "b3nThomas",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/b3nThomas/ben-thomas-guitar-tuition/issues"
+    "url": "https://github.com/b3nThomas/overwatch-simulator/issues"
   },
-  "homepage": "https://github.com/b3nThomas/ben-thomas-guitar-tuition#readme",
+  "homepage": "https://github.com/b3nThomas/overwatch-simulator#readme",
   "devDependencies": {
+    "nodemon": "^1.17.5",
     "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.12"
   }
 }
