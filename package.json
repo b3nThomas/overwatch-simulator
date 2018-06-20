@@ -1,0 +1,30 @@
+{
+  "name": "ben-thomas-guitar-tuition",
+  "version": "1.0.0",
+  "description": "What is says on the tin 👍🎸🎵",
+  "main": "main.js",
+  "scripts": {
+    "build": "npm run -s transpile",
+    "start": "node main.js",
+    "start:local": "npm run -s build && node main.js",
+    "transpile": "./node_modules/.bin/tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3nThomas/ben-thomas-guitar-tuition.git"
+  },
+  "keywords": [
+    "guitar",
+    "music",
+    "learning"
+  ],
+  "author": "b3nThomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b3nThomas/ben-thomas-guitar-tuition/issues"
+  },
+  "homepage": "https://github.com/b3nThomas/ben-thomas-guitar-tuition#readme",
+  "devDependencies": {
+    "typescript": "^2.9.1"
+  }
+}
