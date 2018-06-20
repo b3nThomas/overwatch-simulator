@@ -7,6 +7,7 @@
 ```javascript
 selectHero('so');
 /*
+22:49:39.553Z  INFO overwatch-simulator: Searching for hero "so"
 22:49:39.554Z  WARN overwatch-simulator: Multiple heroes found, please refine your search
     matches: [
       "Soldier: 76",
@@ -18,7 +19,8 @@ selectHero('76');
 /*
 22:51:08.786Z  INFO overwatch-simulator: Searching for hero "sol"
 22:51:08.787Z  INFO overwatch-simulator: Soldier: 76 (a.k.a Jack Morrison) selected
-returns {
+*/
+return {
     name: 'Soldier: 76',
     realname: 'Jack Morrison',
     age: 'Unknown',
@@ -49,5 +51,4 @@ returns {
         }
     ]
 }
-*/
 ```
