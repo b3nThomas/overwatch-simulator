@@ -1,13 +1,51 @@
-export const heroes = [
+export interface IHero {
+    name: string;
+    realName: string;
+    age: number | 'Unknown';
+    role: 'Attack' | 'Defence' | 'Tank' | 'Support';
+    ultimate: string;
+    hp: {
+        health: number;
+        armour: number;
+        sheild: number;
+    };
+    abilities: IAbility[];
+}
+
+type IAbility = IPrimaryAttack | IPassiveHeal;
+
+interface IPrimaryAttack {
+    name: string;
+    clipSize: number;
+    reloadTime: number;
+    damage: {
+        max: number;
+        min: number;
+        falloff?: {
+            start: number;
+            finish: number;
+        }
+    }
+    fireRate: number;
+    duration?: number;
+    headshot: boolean;
+};
+
+interface IPassiveHeal {
+
+}
+
+
+export const heroes: IHero[] = [
     {
         name: 'Ana',
-        realname: 'Ana Amari',
+        realName: 'Ana Amari',
         age: 60,
         role: 'Support',
         ultimate: 'Nano Boost',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -29,13 +67,13 @@ export const heroes = [
     },
     {
         name: 'Bastion',
-        realname: 'SST Laboratories Siege Automaton E54',
+        realName: 'SST Laboratories Siege Automaton E54',
         age: 30,
         role: 'Defence',
         ultimate: 'Configuration: Tank',
         hp: {
             health: 200,
-            armor: 100,
+            armour: 100,
             sheild: 0
         },
         abilities: [
@@ -60,13 +98,13 @@ export const heroes = [
     },
     {
         name: 'Brigitte',
-        realname: 'Brigitte Lindholm',
+        realName: 'Brigitte Lindholm',
         age: 23,
         role: 'Support',
         ultimate: 'Rally',
         hp: {
             health: 200,
-            armor: 50,
+            armour: 50,
             sheild: 0
         },
         abilities: [
@@ -98,13 +136,13 @@ export const heroes = [
     },
     {
         name: 'D.Va',
-        realname: 'Hana Song',
+        realName: 'Hana Song',
         age: 19,
         role: 'Tank',
         ultimate: 'Self-Destruct',
         hp: {
             health: 400,
-            armor: 200,
+            armour: 200,
             sheild: 0
         },
         abilities: [
@@ -128,13 +166,13 @@ export const heroes = [
     },
     {
         name: 'Doomfist',
-        realname: 'Akande Ogundimu',
+        realName: 'Akande Ogundimu',
         age: 45,
         role: 'Attack',
         ultimate: 'Meteor Strike',
         hp: {
             health: 250,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -156,13 +194,13 @@ export const heroes = [
     },
     {
         name: 'Genji',
-        realname: 'Genji Shimada',
+        realName: 'Genji Shimada',
         age: 35,
         role: 'Attack',
         ultimate: 'Dragonblade',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -184,13 +222,13 @@ export const heroes = [
     },
     {
         name: 'Hanzo',
-        realname: 'Hanzo Shimada',
+        realName: 'Hanzo Shimada',
         age: 38,
         role: 'Defence',
         ultimate: 'Dragonstrike',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -210,13 +248,13 @@ export const heroes = [
     },
     {
         name: 'Junkrat',
-        realname: 'Jamison Fawkes',
+        realName: 'Jamison Fawkes',
         age: 25,
         role: 'Defence',
         ultimate: 'RIP-Tire',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -238,13 +276,13 @@ export const heroes = [
     },
     {
         name: 'Lúcio',
-        realname: 'Lucio Correia dos Santos',
+        realName: 'Lucio Correia dos Santos',
         age: 26,
         role: 'Support',
         ultimate: 'Sound Barrier',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -273,13 +311,13 @@ export const heroes = [
     },
     {
         name: 'McCree',
-        realname: 'Jesse McCree',
+        realName: 'Jesse McCree',
         age: 37,
         role: 'Attack',
         ultimate: 'Dead Eye',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -304,13 +342,13 @@ export const heroes = [
     },
     {
         name: 'Mei',
-        realname: 'Mei-Ling Zhou',
+        realName: 'Mei-Ling Zhou',
         age: 31,
         role: 'Defence',
         ultimate: 'Blizzard',
         hp: {
             health: 250,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -335,13 +373,13 @@ export const heroes = [
     },
     {
         name: 'Mercy',
-        realname: 'Angela Ziegler',
+        realName: 'Angela Ziegler',
         age: 34,
         role: 'Support',
         ultimate: 'Valkyrie',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -371,13 +409,13 @@ export const heroes = [
     },
     {
         name: 'Moira',
-        realname: 'Moira O’Deorain',
+        realName: 'Moira O’Deorain',
         age: 48,
         role: 'Support',
         ultimate: 'Coalescence',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -403,13 +441,13 @@ export const heroes = [
     },
     {
         name: 'Orisa',
-        realname: 'Orisa',
+        realName: 'Orisa',
         age: 0.08,
         role: 'Tank',
         ultimate: 'Supercharger',
         hp: {
             health: 200,
-            armor: 200,
+            armour: 200,
             sheild: 0
         },
         abilities: [
@@ -430,13 +468,13 @@ export const heroes = [
     },
     {
         name: 'Pharah',
-        realname: 'Fareeha Amari',
+        realName: 'Fareeha Amari',
         age: 32,
         role: 'Attack',
         ultimate: 'Barrage',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -457,13 +495,13 @@ export const heroes = [
     },
     {
         name: 'Reaper',
-        realname: 'Gabriel Reyes',
+        realName: 'Gabriel Reyes',
         age: 'Unknown',
         role: 'Attack',
         ultimate: 'Death Blossom',
         hp: {
             health: 250,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -499,13 +537,13 @@ export const heroes = [
     },
     {
         name: 'Reinhardt',
-        realname: 'Reinhardt Wilhelm',
+        realName: 'Reinhardt Wilhelm',
         age: 61,
         role: 'Tank',
         ultimate: 'Hammer Down',
         hp: {
             health: 300,
-            armor: 200,
+            armour: 200,
             sheild: 0
         },
         abilities: [
@@ -529,13 +567,13 @@ export const heroes = [
     },
     {
         name: 'Roadhog',
-        realname: 'Mako Rutledge',
+        realName: 'Mako Rutledge',
         age: 48,
         role: 'Tank',
         ultimate: 'Whole Hog',
         hp: {
             health: 600,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -560,13 +598,13 @@ export const heroes = [
     },
     {
         name: 'Soldier: 76',
-        realname: 'Jack Morrison',
+        realName: 'Jack Morrison',
         age: 'Unknown',
         role: 'Attack',
         ultimate: 'Tactical Visor',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -591,13 +629,13 @@ export const heroes = [
     },
     {
         name: 'Sombra',
-        realname: 'Olivia Colomar',
+        realName: 'Olivia Colomar',
         age: 30,
         role: 'Attack',
         ultimate: 'EMP',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -623,13 +661,13 @@ export const heroes = [
     },
     {
         name: 'Symmetra',
-        realname: 'Satya Vaswan',
+        realName: 'Satya Vaswan',
         age: 28,
         role: 'Support',
         ultimate: 'Teleporter/Sheild Matrix',
         hp: {
             health: 100,
-            armor: 0,
+            armour: 0,
             sheild: 100
         },
         abilities: [
@@ -654,13 +692,13 @@ export const heroes = [
     },
     {
         name: 'Torbjörn',
-        realname: 'Torbjörn Lindholm',
+        realName: 'Torbjörn Lindholm',
         age: 57,
         role: 'Defence',
         ultimate: 'Molten Core',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -681,13 +719,13 @@ export const heroes = [
     },
     {
         name: 'Tracer',
-        realname: 'Lena Oxton',
+        realName: 'Lena Oxton',
         age: 26,
         role: 'Attack',
         ultimate: 'Pulse Bomb',
         hp: {
             health: 150,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -712,13 +750,13 @@ export const heroes = [
     },
     {
         name: 'Widowmaker',
-        realname: 'Amélie Lacroix',
+        realName: 'Amélie Lacroix',
         age: 33,
         role: 'Defence',
         ultimate: 'Infra-Sight',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 0
         },
         abilities: [
@@ -743,13 +781,13 @@ export const heroes = [
     },
     {
         name: 'Winston',
-        realname: 'Winston',
+        realName: 'Winston',
         age: 29,
         role: 'Tank',
         ultimate: 'Primal Rage',
         hp: {
             health: 400,
-            armor: 100,
+            armour: 100,
             sheild: 0
         },
         abilities: [
@@ -774,13 +812,13 @@ export const heroes = [
     },
     {
         name: 'Zarya',
-        realname: 'Aleksandra Zaranova',
+        realName: 'Aleksandra Zaranova',
         age: 28,
         role: 'Tank',
         ultimate: 'Graviton Surge',
         hp: {
             health: 200,
-            armor: 0,
+            armour: 0,
             sheild: 200
         },
         abilities: [
@@ -801,13 +839,13 @@ export const heroes = [
     },
     {
         name: 'Zenyatta',
-        realname: 'Tekhartha Zenyatta',
+        realName: 'Tekhartha Zenyatta',
         age: 20,
         role: 'Support',
         ultimate: 'Transcendence',
         hp: {
             health: 50,
-            armor: 0,
+            armour: 0,
             sheild: 150
         },
         abilities: [

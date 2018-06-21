@@ -18,6 +18,6 @@ export const selectHero = (name: string) => {
         return;
     }
     const hero = filteredHeroes[0];
-    log.info(`${ hero.name } (a.k.a ${ hero.realname }) selected`);
+    log.info(`${ hero.name } (a.k.a ${ hero.realName }) selected`);
     return hero;
 }

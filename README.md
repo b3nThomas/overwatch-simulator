@@ -17,13 +17,13 @@ selectHero('76');
 
 returns {
     name: 'Soldier: 76',
-    realname: 'Jack Morrison',
+    realName: 'Jack Morrison',
     age: 'Unknown',
     role: 'Attack',
     ultimate: 'Tactical Visor',
     hp: {
         health: 200,
-        armor: 0,
+        armour: 0,
         sheild: 0
     },
     abilities: [
