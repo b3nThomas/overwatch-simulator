@@ -9,15 +9,16 @@ export interface IHero {
         armour: number;
         sheild: number;
     };
-    abilities: IAbility[];
+    abilities: {
+        primaryAttack?: IPrimaryAttack;
+        passiveHeal?: IPassiveHeal;
+    };
 }
-
-type IAbility = IPrimaryAttack | IPassiveHeal;
 
 interface IPrimaryAttack {
     name: string;
-    clipSize: number;
-    reloadTime: number;
+    clipSize?: number;
+    reloadTime?: number;
     damage: {
         max: number;
         min: number;
@@ -26,15 +27,22 @@ interface IPrimaryAttack {
             finish: number;
         }
     }
-    fireRate: number;
+    fireRate?: number;
     duration?: number;
     headshot: boolean;
 };
 
 interface IPassiveHeal {
+    name: string;
+    trigger: 'primaryAttack' | 'constant';
+    healRate: {
+        type: 'fixed' | 'percentage';
+        amount: number;
+    };
+    buffer?: number;
+    duration?: number;
 
 }
-
 
 export const heroes: IHero[] = [
     {
@@ -48,22 +56,20 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Biotic Rifle',
-                    clipSize: 14,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 70,
-                        min: 70
-                    },
-                    fireRate: 1.25,
-                    duration: 0.85,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Biotic Rifle',
+                clipSize: 14,
+                reloadTime: 1.5,
+                damage: {
+                    max: 70,
+                    min: 70
+                },
+                fireRate: 1.25,
+                duration: 0.85,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Bastion',
@@ -76,25 +82,23 @@ export const heroes: IHero[] = [
             armour: 100,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Configuration: Recon',
-                    clipSize: 20,
-                    reloadTime: 2,
-                    damage: {
-                        max: 20,
-                        min: 6,
-                        falloff: {
-                            start: 26,
-                            finish: 50
-                        },
+        abilities: {
+            primaryAttack: {
+                name: 'Configuration: Recon',
+                clipSize: 20,
+                reloadTime: 2,
+                damage: {
+                    max: 20,
+                    min: 6,
+                    falloff: {
+                        start: 26,
+                        finish: 50
                     },
-                    fireRate: 8,
-                    headshot: true
-                }
+                },
+                fireRate: 8,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Brigitte',
@@ -107,32 +111,31 @@ export const heroes: IHero[] = [
             armour: 50,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Rocket Flail',
-                    damage: {
-                        max: 35,
-                        min: 0,
-                        falloff: {
-                            start: 6,
-                            finish: 6
-                        }
-                    },
-                    fireRate: 2,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Rocket Flail',
+                damage: {
+                    max: 35,
+                    min: 0,
+                    falloff: {
+                        start: 6,
+                        finish: 6
+                    }
+                },
+                fireRate: 2,
+                headshot: false
             },
-            {
-                passiveHeal: {
-                    name: 'Inspire',
-                    trigger: 'primaryAttack',
-                    healRate: 16,
-                    buffer: 1.5,
-                    duration: 5
-                }
+            passiveHeal: {
+                name: 'Inspire',
+                trigger: 'primaryAttack',
+                healRate: {
+                    type: 'fixed',
+                    amount: 16
+                },
+                buffer: 1.5,
+                duration: 5
             }
-        ]
+        }
     },
     {
         name: 'D.Va',
@@ -145,24 +148,22 @@ export const heroes: IHero[] = [
             armour: 200,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Fusion Cannons',
-                    damage: {
-                        max: 22,
-                        min: 6.6,
-                        falloff: {
-                            start: 10,
-                            finish: 20
-                        },
+        abilities: {
+            primaryAttack: {
+                name: 'Fusion Cannons',
+                damage: {
+                    max: 22,
+                    min: 6.6,
+                    falloff: {
+                        start: 10,
+                        finish: 20
                     },
-                    fireRate: 6.67,
-                    duration: 0,
-                    headshot: true
-                }
+                },
+                fireRate: 6.67,
+                duration: 0,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Doomfist',
@@ -175,22 +176,20 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Hand Cannon',
-                    clipSize: 4,
-                    reloadTime: 0.75,
-                    damage: {
-                        max: 66,
-                        min: 0
-                    },
-                    fireRate: 3.3,
-                    headshot: true
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Hand Cannon',
+                clipSize: 4,
+                reloadTime: 0.75,
+                damage: {
+                    max: 66,
+                    min: 0
+                },
+                fireRate: 3.3,
+                headshot: true
+    
             }
-        ]
+        }
     },
     {
         name: 'Genji',
@@ -203,22 +202,19 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Shuriken',
-                    clipSize: 8,
-                    reloadTime: 1,
-                    damage: {
-                        max: 84,
-                        min: 0
-                    },
-                    fireRate: 1,
-                    headshot: true
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Shuriken',
+                clipSize: 8,
+                reloadTime: 1,
+                damage: {
+                    max: 84,
+                    min: 0
+                },
+                fireRate: 1,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Hanzo',
@@ -231,20 +227,18 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Storm Bow',
-                    reloadTime: 0.5,
-                    damage: {
-                        max: 125,
-                        min: 0
-                    },
-                    fireRate: 1.25,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Storm Bow',
+                reloadTime: 0.5,
+                damage: {
+                    max: 125,
+                    min: 0
+                },
+                fireRate: 1.25,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Junkrat',
@@ -257,22 +251,19 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Frag Launcher',
-                    clipSize: 5,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 120,
-                        min: 0
-                    },
-                    fireRate: 1.66,
-                    headshot: false
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Frag Launcher',
+                clipSize: 5,
+                reloadTime: 1.5,
+                damage: {
+                    max: 120,
+                    min: 0
+                },
+                fireRate: 1.66,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Lúcio',
@@ -285,29 +276,28 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Sonic Amplifier',
-                    clipSize: 5,
-                    reloadTime: 1.25,
-                    damage: {
-                        max: 80,
-                        min: 0
-                    },
-                    fireRate: 1,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Sonic Amplifier',
+                clipSize: 5,
+                reloadTime: 1.25,
+                damage: {
+                    max: 80,
+                    min: 0
+                },
+                fireRate: 1,
+                headshot: true
             },
-            {
-                passiveHeal: {
-                    name: 'Crossfade',
-                    trigger: 'constant',
-                    healRate: 13,
-                    buffer: 0.5
-                }
+            passiveHeal: {
+                name: 'Crossfade',
+                trigger: 'constant',
+                healRate: {
+                    type: 'fixed',
+                    amount: 13
+                },
+                buffer: 0.5
             }
-        ]
+        }
     },
     {
         name: 'McCree',
@@ -320,25 +310,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Peacekeeper',
-                    clipSize: 6,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 70,
-                        min: 20,
-                        falloff: {
-                            start: 20,
-                            finish: 45
-                        }
-                    },
-                    fireRate: 2,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Peacekeeper',
+                clipSize: 6,
+                reloadTime: 1.5,
+                damage: {
+                    max: 70,
+                    min: 20,
+                    falloff: {
+                        start: 20,
+                        finish: 45
+                    }
+                },
+                fireRate: 2,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Mei',
@@ -351,25 +339,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Endothermic Blaster: Icicle',
-                    clipSize: 8,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 75,
-                        min: 22,
-                        falloff: {
-                            start: 35,
-                            finish: 55
-                        }
-                    },
-                    fireRate: 1.17,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Endothermic Blaster: Icicle',
+                clipSize: 8,
+                reloadTime: 1.5,
+                damage: {
+                    max: 75,
+                    min: 22,
+                    falloff: {
+                        start: 35,
+                        finish: 55
+                    }
+                },
+                fireRate: 1.17,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Mercy',
@@ -382,30 +368,28 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Caduceus Blaster',
-                    clipSize: 20,
-                    reloadTime: 1,
-                    damage: {
-                        max: 20,
-                        min: 0
-                    },
-                    fireRate: 5,
-                    headshot: true
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Caduceus Blaster',
+                clipSize: 20,
+                reloadTime: 1,
+                damage: {
+                    max: 20,
+                    min: 0
+                },
+                fireRate: 5,
+                headshot: true
             },
-            {
-                passiveHeal: {
-                    name: 'Regeneration',
-                    trigger: 'constant',
-                    healRate: 20,
-                    buffer: 1
-                }
+            passiveHeal: {
+                name: 'Regeneration',
+                trigger: 'constant',
+                healRate: {
+                    type: 'fixed',
+                    amount: 20
+                },
+                buffer: 1
             }
-        ]
+        }
     },
     {
         name: 'Moira',
@@ -418,26 +402,24 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Biotic Grasp: Decay',
-                    damage: {
-                        max: 50,
-                        min: 0
-                    },
-                    headshot: false
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Biotic Grasp: Decay',
+                damage: {
+                    max: 50,
+                    min: 0
+                },
+                headshot: false
             },
-            {
-                passiveHeal: {
-                    name: 'Biotic Grasp: Decay',
-                    trigger: 'primaryAttack',
-                    healRate: 33
-                }
+            passiveHeal: {
+                name: 'Biotic Grasp: Decay',
+                trigger: 'primaryAttack',
+                healRate: {
+                    type: 'fixed',
+                    amount: 33
+                },
             }
-        ]
+        }
     },
     {
         name: 'Orisa',
@@ -450,21 +432,19 @@ export const heroes: IHero[] = [
             armour: 200,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Fusion Driver',
-                    clipSize: 0,
-                    reloadTime: 2.66,
-                    damage: {
-                        max: 11,
-                        min: 0
-                    },
-                    fireRate: 12.5,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Fusion Driver',
+                clipSize: 0,
+                reloadTime: 2.66,
+                damage: {
+                    max: 11,
+                    min: 0
+                },
+                fireRate: 12.5,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Pharah',
@@ -477,21 +457,19 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Rocket Launcher',
-                    clipSize: 6,
-                    reloadTime: 1,
-                    damage: {
-                        max: 120,
-                        min: 0
-                    },
-                    fireRate: 1.11,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Rocket Launcher',
+                clipSize: 6,
+                reloadTime: 1,
+                damage: {
+                    max: 120,
+                    min: 0
+                },
+                fireRate: 1.11,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Reaper',
@@ -504,36 +482,31 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Hellfire Shotguns',
-                    clipSize: 8,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 140,
-                        min: 40,
-                        falloff: {
-                            start: 11,
-                            finish: 20
-                        }
-                    },
-                    fireRate: 2,
-                    headshot: true
-
-                }
-            },
-            {
-                passiveHeal: {
-                    name: 'The Reaping',
-                    trigger: 'primaryAttack',
-                    healRate: {
-                        type: 'percentage',
-                        amount: 20
+        abilities: {
+            primaryAttack: {
+                name: 'Hellfire Shotguns',
+                clipSize: 8,
+                reloadTime: 1.5,
+                damage: {
+                    max: 140,
+                    min: 40,
+                    falloff: {
+                        start: 11,
+                        finish: 20
                     }
+                },
+                fireRate: 2,
+                headshot: true
+            },
+            passiveHeal: {
+                name: 'The Reaping',
+                trigger: 'primaryAttack',
+                healRate: {
+                    type: 'percentage',
+                    amount: 20
                 }
             }
-        ]
+        }
     },
     {
         name: 'Reinhardt',
@@ -546,24 +519,21 @@ export const heroes: IHero[] = [
             armour: 200,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Rocket Hammer',
-                    damage: {
-                        max: 75,
-                        min: 0,
-                        falloff: {
-                            start: 5,
-                            finish: 5
-                        }
-                    },
-                    fireRate: 1.1,
-                    headshot: false
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Rocket Hammer',
+                damage: {
+                    max: 75,
+                    min: 0,
+                    falloff: {
+                        start: 5,
+                        finish: 5
+                    }
+                },
+                fireRate: 1.1,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Roadhog',
@@ -576,25 +546,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Scrap Gun Blast',
-                    clipSize: 5,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 150,
-                        min: 32.5,
-                        falloff: {
-                            start: 11,
-                            finish: 20
-                        }
-                    },
-                    fireRate: 1.3,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Scrap Gun Blast',
+                clipSize: 5,
+                reloadTime: 1.5,
+                damage: {
+                    max: 150,
+                    min: 32.5,
+                    falloff: {
+                        start: 11,
+                        finish: 20
+                    }
+                },
+                fireRate: 1.3,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Soldier: 76',
@@ -607,25 +575,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Heavy Pulse Rifle',
-                    clipSize: 25,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 19,
-                        min: 5,
-                        falloff: { 
-                            start: 30,
-                            finish: 55
-                        }
-                    },
-                    fireRate: 8.66,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Heavy Pulse Rifle',
+                clipSize: 25,
+                reloadTime: 1.5,
+                damage: {
+                    max: 19,
+                    min: 5,
+                    falloff: { 
+                        start: 30,
+                        finish: 55
+                    }
+                },
+                fireRate: 8.66,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Sombra',
@@ -638,26 +604,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Machine Pistol',
-                    clipSize: 60,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 8,
-                        min: 2.4,
-                        falloff: {
-                            start: 15,
-                            finish: 25
-                        }
-                    },
-                    fireRate: 20,
-                    headshot: true
-        
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Machine Pistol',
+                clipSize: 60,
+                reloadTime: 1.5,
+                damage: {
+                    max: 8,
+                    min: 2.4,
+                    falloff: {
+                        start: 15,
+                        finish: 25
+                    }
+                },
+                fireRate: 20,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Symmetra',
@@ -670,25 +633,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 100
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Photon Beam',
-                    clipSize: 100,
-                    reloadTime: 1.8,
-                    damage: {
-                        max: 60,
-                        min: 0,
-                        falloff: {
-                            start: 9.5,
-                            finish: 9.5
-                        }
-                    },
-                    fireRate: 7,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Photon Beam',
+                clipSize: 100,
+                reloadTime: 1.8,
+                damage: {
+                    max: 60,
+                    min: 0,
+                    falloff: {
+                        start: 9.5,
+                        finish: 9.5
+                    }
+                },
+                fireRate: 7,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Torbjörn',
@@ -701,21 +662,19 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Rivet Gun Shot',
-                    clipSize: 18,
-                    reloadTime: 2,
-                    damage: {
-                        max: 70,
-                        min: 0
-                    },
-                    fireRate: 1.67,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Rivet Gun Shot',
+                clipSize: 18,
+                reloadTime: 2,
+                damage: {
+                    max: 70,
+                    min: 0
+                },
+                fireRate: 1.67,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Tracer',
@@ -728,25 +687,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Pulse Pistols',
-                    clipSize: 40,
-                    reloadTime: 1,
-                    damage: {
-                        max: 6,
-                        min: 1.5,
-                        falloff: {
-                            start: 11,
-                            finish: 30
-                        }
-                    },
-                    fireRate: 20,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Pulse Pistols',
+                clipSize: 40,
+                reloadTime: 1,
+                damage: {
+                    max: 6,
+                    min: 1.5,
+                    falloff: {
+                        start: 11,
+                        finish: 30
+                    }
+                },
+                fireRate: 20,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Widowmaker',
@@ -759,25 +716,23 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Widow\'s Kiss (Scoped)',
-                    clipSize: 10,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 120,
-                        min: 0,
-                        falloff: {
-                            start: 0,
-                            finish: 0
-                        }
-                    },
-                    fireRate: 1,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Widow\'s Kiss (Scoped)',
+                clipSize: 10,
+                reloadTime: 1.5,
+                damage: {
+                    max: 120,
+                    min: 0,
+                    falloff: {
+                        start: 0,
+                        finish: 0
+                    }
+                },
+                fireRate: 1,
+                headshot: true
             }
-        ]
+        }
     },
     {
         name: 'Winston',
@@ -790,25 +745,23 @@ export const heroes: IHero[] = [
             armour: 100,
             sheild: 0
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Tesla Cannon',
-                    clipSize: 100,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 3,
-                        min: 0,
-                        falloff: {
-                            start: 8,
-                            finish: 8
-                        }
-                    },
-                    fireRate: 20,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Tesla Cannon',
+                clipSize: 100,
+                reloadTime: 1.5,
+                damage: {
+                    max: 3,
+                    min: 0,
+                    falloff: {
+                        start: 8,
+                        finish: 8
+                    }
+                },
+                fireRate: 20,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Zarya',
@@ -821,21 +774,19 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 200
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Particle Energy Beam',
-                    clipSize: 100,
-                    reloadTime: 1.5,
-                    damage: {
-                        max: 7,
-                        min: 0,
-                    },
-                    fireRate: 20,
-                    headshot: false
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Particle Energy Beam',
+                clipSize: 100,
+                reloadTime: 1.5,
+                damage: {
+                    max: 7,
+                    min: 0,
+                },
+                fireRate: 20,
+                headshot: false
             }
-        ]
+        }
     },
     {
         name: 'Zenyatta',
@@ -848,20 +799,18 @@ export const heroes: IHero[] = [
             armour: 0,
             sheild: 150
         },
-        abilities: [
-            {
-                primaryAttack: {
-                    name: 'Orb of Destruction',
-                    clipSize: 20,
-                    reloadTime: 2,
-                    damage: {
-                        max: 46,
-                        min: 0
-                    },
-                    fireRate: 2.5,
-                    headshot: true
-                }
+        abilities: {
+            primaryAttack: {
+                name: 'Orb of Destruction',
+                clipSize: 20,
+                reloadTime: 2,
+                damage: {
+                    max: 46,
+                    min: 0
+                },
+                fireRate: 2.5,
+                headshot: true
             }
-        ]
-    },
+        }
+    }
 ];
