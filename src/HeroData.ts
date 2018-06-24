@@ -10,15 +10,15 @@ export interface IHero {
         sheild: number;
     };
     abilities: {
-        primaryAttack?: IPrimaryAttack;
+        primaryAttack: IPrimaryAttack;
         passiveHeal?: IPassiveHeal;
     };
 }
 
 interface IPrimaryAttack {
     name: string;
-    clipSize?: number;
-    reloadTime?: number;
+    clipSize: number;
+    reloadTime: number;
     damage: {
         max: number;
         min: number;
@@ -27,12 +27,11 @@ interface IPrimaryAttack {
             finish: number;
         }
     }
-    fireRate?: number;
-    duration?: number;
+    fireRate: number;
     headshot: boolean;
 };
 
-interface IPassiveHeal {
+export interface IPassiveHeal {
     name: string;
     trigger: 'primaryAttack' | 'constant';
     healRate: {
@@ -66,7 +65,6 @@ export const heroes: IHero[] = [
                     min: 70
                 },
                 fireRate: 1.25,
-                duration: 0.85,
                 headshot: false
             }
         }
@@ -114,6 +112,8 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Rocket Flail',
+                clipSize: 0,
+                reloadTime: 0,
                 damage: {
                     max: 35,
                     min: 0,
@@ -151,6 +151,8 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Fusion Cannons',
+                clipSize: 0,
+                reloadTime: 0,
                 damage: {
                     max: 22,
                     min: 6.6,
@@ -160,7 +162,6 @@ export const heroes: IHero[] = [
                     },
                 },
                 fireRate: 6.67,
-                duration: 0,
                 headshot: true
             }
         }
@@ -230,7 +231,8 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Storm Bow',
-                reloadTime: 0.5,
+                clipSize: 0,
+                reloadTime: 0,
                 damage: {
                     max: 125,
                     min: 0
@@ -405,10 +407,13 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Biotic Grasp: Decay',
+                clipSize: 0,
+                reloadTime: 0,
                 damage: {
-                    max: 50,
+                    max: 1,
                     min: 0
                 },
+                fireRate: 50,
                 headshot: false
             },
             passiveHeal: {
@@ -435,7 +440,7 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Fusion Driver',
-                clipSize: 0,
+                clipSize: 150,
                 reloadTime: 2.66,
                 damage: {
                     max: 11,
@@ -522,6 +527,8 @@ export const heroes: IHero[] = [
         abilities: {
             primaryAttack: {
                 name: 'Rocket Hammer',
+                clipSize: 0,
+                reloadTime: 0,
                 damage: {
                     max: 75,
                     min: 0,
@@ -729,7 +736,7 @@ export const heroes: IHero[] = [
                         finish: 0
                     }
                 },
-                fireRate: 1,
+                fireRate: 0.8333333333,
                 headshot: true
             }
         }
