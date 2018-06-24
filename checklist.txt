@@ -1,6 +1,0 @@
-1. Select a character ✅
-2. Time loop. ❌
-3. Update. ❌
-4. Apply constant tick down to health. ❌
-5. Death to stop loop. ❌
-6. Program armour. // 50% < 10. 5 >= 10 ❌
